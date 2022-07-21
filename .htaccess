@@ -1,0 +1,58 @@
+DirectoryIndex index.php
+RewriteEngine on
+ 
+RewriteCond $1 !^(index\.php|(.*)\.swf|frontassets|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php?$1 [L,QSA]
+
+
+<IfModule mod_php5.c>
+############################################
+## adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+    php_value atatus.app_name "ClaimMitra"
+
+############################################
+## disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## enable resulting html compression
+
+    #php_flag zlib.output_compression on
+
+###########################################
+## disable user agent verification to not break multiple image upload
+
+    php_flag suhosin.session.cryptua off
+</IfModule>
+<IfModule mod_php7.c>
+############################################
+## adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+    php_value atatus.app_name "ClaimMitra"
+
+############################################
+## disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## enable resulting html compression
+
+    #php_flag zlib.output_compression on
+
+###########################################
+## disable user agent verification to not break multiple image upload
+
+    php_flag suhosin.session.cryptua off
+</IfModule>
+
